@@ -15,11 +15,13 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        String fileLocation = "C:\\Users\\sathy\\Downloads\\to do list icon.jpg";
+        String fileLocationCSD = "C:\\Users\\stad5246\\Downloads\\to do list logo.png";
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("todo.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("To Do List");
         stage.setScene(scene);
-        stage.getIcons().add(new Image("C:\\Users\\sathy\\Downloads\\to do list icon.jpg"));
+        stage.getIcons().add(new Image(fileLocationCSD)); // make sure to change depending on where I am
         stage.setMaximized(true);
         stage.show();
     }
