@@ -5,9 +5,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,6 +17,15 @@ public class Controller implements Initializable {
 
     private List<String> taskNames = new ArrayList<>();
     private List<Task> tasks = new ArrayList<>();
+
+    @FXML
+    private AnchorPane bottomAnchorPane;
+
+    @FXML
+    private AnchorPane viewTaskAnchorPane;
+
+    @FXML
+    private Button viewTaskButton;
 
     @FXML
     private DatePicker datePicker;
@@ -71,6 +80,9 @@ public class Controller implements Initializable {
     void about(ActionEvent event) {
         //TODO change the detailed task window to a summary of the creation of this service, etc.
 
+        viewTaskButton.setVisible(true);
+        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5cbf3");
+
         viewTask.setText("About Application");
         taskNameLabel.setText("Created by: ");
         dueDateLabel.setText("");
@@ -85,7 +97,7 @@ public class Controller implements Initializable {
         System.out.println(taskName.getText());
         System.out.println(datePicker.getValue());
 
-        if (taskName.getText() != null && datePicker.getValue() != null) {
+        if ((taskName.getText() != null && !taskName.getText().isBlank()) && datePicker.getValue() != null) {
             tasks.add(new Task(taskName.getText(), String.valueOf(datePicker.getValue())));
             taskNames.add(taskName.getText());
         }
@@ -159,6 +171,9 @@ public class Controller implements Initializable {
                 int itemIndex = listView.getSelectionModel().getSelectedIndex();
                 taskNameLabelField.setText(tasks.get(itemIndex).getName());
                 dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
+                bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
+                viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
+                viewTaskButton.setVisible(true);
             }
         }
     }
@@ -166,6 +181,8 @@ public class Controller implements Initializable {
     @FXML
     void editTask(ActionEvent event) {
         createTask.setText("Edit Task");
+        bottomAnchorPane.setStyle("-fx-background-color: " + "#bdb7f1");
+        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
 
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         String nameOfTask = tasks.get(itemIndex).getName();
@@ -191,12 +208,15 @@ public class Controller implements Initializable {
     @FXML
     void refreshList(ActionEvent event) {
         listView.getSelectionModel().clearSelection();
+        bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
+        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
         createTask.setText("Create a Task");
         viewTask.setText("View Task");
         taskNameLabel.setText("Task Name:");
         dueDateLabel.setText("Due Date:");
         taskNameLabelField.setText("Right-click a task to view");
         dueDateLabelField.setText("Right-click a task to view");
+        viewTaskButton.setVisible(false);
 
         listView.getItems().clear();
         if (tasks.size() == 0) {
@@ -220,6 +240,9 @@ public class Controller implements Initializable {
 
     @FXML
     void viewTask(ActionEvent event) {
+        viewTaskButton.setVisible(true);
+        bottomAnchorPane.setStyle("-fx-background-color: #" + "9fbded");
+        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         taskNameLabelField.setText(tasks.get(itemIndex).getName());
         dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
@@ -237,6 +260,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        viewTaskButton.setVisible(false);
 //        listView.setEditable(true);
 //        listView.setCellFactory(TextFieldListCell.forListView());
 
