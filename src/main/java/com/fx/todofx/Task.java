@@ -6,7 +6,6 @@ package com.fx.todofx;
 public class Task {
     private String name;
     private String dueDate;
-    private String notes;
 
     /**
      * A parameterized constructor for a task.
@@ -16,18 +15,6 @@ public class Task {
     public Task(String name, String dueDate) {
         this.name = name;
         this.dueDate = dueDate;
-    }
-
-    /**
-     * A parameterized constructor for a task.
-     * @param name Name of the task.
-     * @param dueDate Due date of the task.
-     * @param notes Notes of the task.
-     */
-    public Task(String name, String dueDate, String notes) {
-        this.name = name;
-        this.dueDate = dueDate;
-        this.notes = notes;
     }
 
     /**
@@ -68,22 +55,6 @@ public class Task {
      */
     public void setDueDate(String dueDate) {
         this.dueDate = dueDate;
-    }
-
-    /**
-     * Gets the notes of the task.
-     * @return Notes of the task
-     */
-    public String getNotes() {
-        return notes;
-    }
-
-    /**
-     * Sets the notes of the task.
-     * @param notes Notes of the task.
-     */
-    public void setNotes(String notes) {
-        this.notes = notes;
     }
 
     /**

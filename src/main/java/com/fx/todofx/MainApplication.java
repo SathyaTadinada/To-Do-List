@@ -15,13 +15,9 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        int choice = 1;
-        String fileLocation = "";
-        if (choice == 1) {
-            fileLocation = "C:\\Users\\sathy\\Downloads\\to do list icon.jpg";
-        } else if (choice == 2) {
-            fileLocation = "C:\\Users\\stad5246\\Downloads\\to do list logo.png";
-        }
+        String fileLocation = "C:\\Users\\sathy\\Downloads\\to do list icon.jpg";
+//        String fileLocation = "C:\\Users\\stad5246\\Downloads\\to do list logo.png";
+
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("todo.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("To Do List");

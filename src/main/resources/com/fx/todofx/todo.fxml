@@ -17,7 +17,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fx.todofx.Controller">
     <children>
-        <SplitPane dividerPositions="0.95" layoutX="153.0" layoutY="25.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.9114857744994731" layoutX="153.0" layoutY="25.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
@@ -26,7 +26,7 @@
                                 <ContextMenu>
                                     <items>
                                         <MenuItem fx:id="viewTaskContextMenu" mnemonicParsing="false" onAction="#viewTask" text="View Task" />
-                              <MenuItem fx:id="editTaskContextMenu" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
+                                        <MenuItem fx:id="editTaskContextMenu" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
                                         <MenuItem fx:id="deleteContextMenu" mnemonicParsing="false" onAction="#deleteTasks" text="Delete" />
                                     </items>
                                 </ContextMenu>
@@ -34,7 +34,7 @@
                         </ListView>
                     </children>
                 </AnchorPane>
-                <AnchorPane minHeight="165.0" minWidth="0.0" prefHeight="196.0" prefWidth="390.0" style="-fx-background-color: #9fbded;">
+                <AnchorPane fx:id="bottomAnchorPane" minHeight="165.0" minWidth="0.0" prefHeight="196.0" prefWidth="390.0" style="-fx-background-color: #9fbded;">
                     <children>
                         <Label fx:id="createTask" layoutX="22.0" layoutY="14.0" text="Create a Task" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <font>
@@ -46,7 +46,7 @@
                         <DatePicker fx:id="datePicker" layoutX="94.0" layoutY="92.0" promptText="e.g. 1/1/2001" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="92.0" />
                         <Label layoutX="17.0" layoutY="63.0" text="Task Name:" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="63.0" />
                         <Label layoutX="25.0" layoutY="96.0" text="Due Date: " AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
-                        <AnchorPane layoutX="300.0" prefHeight="196.0" prefWidth="300.0" style="-fx-background-color: #88cf9b;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="viewTaskAnchorPane" layoutX="300.0" prefHeight="196.0" prefWidth="300.0" style="-fx-background-color: #88cf9b;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <Separator layoutX="-3.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                 <Label fx:id="viewTask" layoutX="6.0" layoutY="14.0" text="View Task" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
@@ -66,7 +66,7 @@
                                         <Font name="Segoe UI Bold" size="16.0" />
                                     </font>
                                 </Label>
-                                <Button layoutX="124.0" layoutY="157.0" mnemonicParsing="false" onAction="#refreshList" style="-fx-background-color: #e67067;" text="Done" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="124.0" />
+                                <Button fx:id="viewTaskButton" layoutX="124.0" layoutY="157.0" mnemonicParsing="false" onAction="#refreshList" style="-fx-background-color: #e67067;" text="Done" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="124.0" />
                             </children>
                         </AnchorPane>
                     </children>
@@ -78,15 +78,15 @@
                 <Menu mnemonicParsing="false" text="File">
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#refreshList" text="Home" />
-                  <MenuItem fx:id="clearMenuBar" mnemonicParsing="false" onAction="#clear" text="Clear" />
+                        <MenuItem fx:id="clearMenuBar" mnemonicParsing="false" onAction="#clear" text="Clear" />
                         <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
                         <MenuItem fx:id="viewTaskMenuBar" mnemonicParsing="false" onAction="#viewTask" text="View Task" />
-                  <MenuItem fx:id="editTaskMenuBar" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
-                  <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem fx:id="editTaskMenuBar" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
                         <MenuItem fx:id="deleteMenuBar" mnemonicParsing="false" onAction="#deleteTasks" text="Delete" />
                     </items>
                 </Menu>
