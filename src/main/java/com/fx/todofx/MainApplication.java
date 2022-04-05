@@ -15,8 +15,7 @@ import java.io.IOException;
 public class MainApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        String fileLocation = "C:\\Users\\sathy\\Downloads\\to do list icon.jpg";
-//        String fileLocation = "C:\\Users\\stad5246\\Downloads\\to do list logo.png";
+        String fileLocation = String.valueOf(MainApplication.class.getResource("to do list icon.jpg"));
 
         FXMLLoader fxmlLoader = new FXMLLoader(MainApplication.class.getResource("todo.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

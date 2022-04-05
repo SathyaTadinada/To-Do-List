@@ -8,7 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
@@ -78,16 +77,15 @@ public class Controller implements Initializable {
 
     @FXML
     void about(ActionEvent event) {
-        //TODO change the detailed task window to a summary of the creation of this service, etc.
 
         viewTaskButton.setVisible(true);
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5cbf3");
 
         viewTask.setText("About Application");
-        taskNameLabel.setText("Created by: ");
+        taskNameLabel.setText("Created for: ");
         dueDateLabel.setText("");
 
-        taskNameLabelField.setText("Sathya Tadinada");
+        taskNameLabelField.setText("IB Computer Science IA");
         dueDateLabelField.setText("");
 
     }
