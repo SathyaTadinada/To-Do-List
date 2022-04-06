@@ -91,6 +91,8 @@ public class Controller implements Initializable {
         taskNameLabelField.setText("IB Computer Science IA");
         dueDateLabelField.setText("");
 
+        noSelectedTaskLabel.setVisible(false);
+
     }
 
     @FXML
