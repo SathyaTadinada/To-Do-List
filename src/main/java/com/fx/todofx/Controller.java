@@ -48,6 +48,9 @@ public class Controller implements Initializable {
     private Label dueDateLabel;
 
     @FXML
+    private Label noSelectedTaskLabel;
+
+    @FXML
     private TextField taskName;
 
     @FXML
@@ -137,11 +140,15 @@ public class Controller implements Initializable {
         if (event.getButton().equals(MouseButton.PRIMARY)){
             if (event.getClickCount() == 2){
                 int itemIndex = listView.getSelectionModel().getSelectedIndex();
+                taskNameLabel.setText("Task Name:");
+                dueDateLabel.setText("Due Date:");
                 taskNameLabelField.setText(tasks.get(itemIndex).getName());
                 dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
                 bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
                 viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
+
                 viewTaskButton.setVisible(true);
+                noSelectedTaskLabel.setVisible(false);
             }
         }
     }
@@ -172,10 +179,13 @@ public class Controller implements Initializable {
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
         createTask.setText("Create a Task");
         viewTask.setText("View Task");
-        taskNameLabel.setText("Task Name:");
-        dueDateLabel.setText("Due Date:");
-        taskNameLabelField.setText("Right-click a task to view");
-        dueDateLabelField.setText("Right-click a task to view");
+
+//        taskNameLabel.setText("Task Name:");
+//        dueDateLabel.setText("Due Date:");
+//        taskNameLabelField.setText("Right-click a task to view");
+//        dueDateLabelField.setText("Right-click a task to view");
+
+
         viewTaskButton.setVisible(false);
 
         listView.getItems().clear();
@@ -194,18 +204,31 @@ public class Controller implements Initializable {
 
             editTaskContextMenu.setDisable(false);
             editTaskMenuBar.setDisable(false);
+
+            taskNameLabel.setText("");
+            dueDateLabel.setText("");
+            taskNameLabelField.setText("");
+            dueDateLabelField.setText("");
+
+            noSelectedTaskLabel.setVisible(true);
+            noSelectedTaskLabel.setText("Right-click a task to view it.");
         }
 
     }
 
     @FXML
     void viewTask(ActionEvent event) {
+        taskNameLabel.setText("Task Name:");
+        dueDateLabel.setText("Due Date:");
+        noSelectedTaskLabel.setVisible(false);
         viewTaskButton.setVisible(true);
+
         bottomAnchorPane.setStyle("-fx-background-color: #" + "9fbded");
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         taskNameLabelField.setText(tasks.get(itemIndex).getName());
         dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
+
 
     }
 
@@ -213,8 +236,13 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewTaskButton.setVisible(false);
         noTasks();
-        taskNameLabelField.setText("Right-click a task to view");
-        dueDateLabelField.setText("Right-click a task to view");
+
+        taskNameLabel.setText("");
+        dueDateLabel.setText("");
+        taskNameLabelField.setText("");
+        dueDateLabelField.setText("");
+
+        noSelectedTaskLabel.setText("Create a task to view it here.");
 
     }
 
@@ -230,5 +258,13 @@ public class Controller implements Initializable {
 
         editTaskContextMenu.setDisable(true);
         editTaskMenuBar.setDisable(true);
+
+        taskNameLabel.setText("");
+        dueDateLabel.setText("");
+        taskNameLabelField.setText("");
+        dueDateLabelField.setText("");
+
+        noSelectedTaskLabel.setVisible(true);
+        noSelectedTaskLabel.setText("Create a task to view it here.");
     }
 }
