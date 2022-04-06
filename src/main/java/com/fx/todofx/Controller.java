@@ -92,40 +92,20 @@ public class Controller implements Initializable {
 
     @FXML
     void addTask(ActionEvent event) {
-        System.out.println(taskName.getText());
-        System.out.println(datePicker.getValue());
+//        System.out.println(taskName.getText());
+//        System.out.println(datePicker.getValue());
 
+        // verifies that both the task name text field and the date picker are not empty before adding the task
         if ((taskName.getText() != null && !taskName.getText().isBlank()) && datePicker.getValue() != null) {
             tasks.add(new Task(taskName.getText(), String.valueOf(datePicker.getValue())));
             taskNames.add(taskName.getText());
         }
-
-//        List<String> strings = new ArrayList<>();
-//        ObservableList<String> observableList = FXCollections.observableList(strings);
-//        strings.add(datePicker.getValue() + taskName.getText());
-//
-//        listView.edit(listViewMenuIndex);
-//        listView.setItems(observableList);
-//        listViewMenuIndex++;
-//        System.out.println(listViewMenuIndex);
 
         taskName.clear();
         datePicker.setValue(null);
 
         refreshList(event);
     }
-
-//    @FXML
-//    public void onPrintButtonClicked(MouseEvent event) {
-//        String message = "";
-//        ObservableList<String> movies;
-//        movies = listView.getSelectionModel().getSelectedItems();
-//
-//        for (String m : movies) {
-//            message += m + "\n";
-//        }
-//        System.out.println(message);
-//    }
 
     @FXML
     public void clear(ActionEvent event) {
@@ -141,8 +121,6 @@ public class Controller implements Initializable {
 
     @FXML
     void deleteTasks(ActionEvent event) {
-//        ObservableList<String> toBeRemoved = listView.getSelectionModel().getSelectedItems();
-//        listView.getItems().removeAll(toBeRemoved);
 
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         tasks.remove(itemIndex);
@@ -152,14 +130,6 @@ public class Controller implements Initializable {
         }
         refreshList(event);
 
-//        if (tasks.size() < 1) {
-//            deleteContextMenu.setDisable(true);
-//            deleteMenuBar.setDisable(true);
-//        } else {
-//            int itemIndex = listView.getSelectionModel().getSelectedIndex();
-//            tasks.remove(itemIndex);
-//            refreshList(event);
-//        }
     }
 
     @FXML
@@ -192,14 +162,6 @@ public class Controller implements Initializable {
         tasks.remove(itemIndex);
         taskNames.remove(itemIndex);
         listView.getItems().remove(itemIndex);
-//        itemIndex = listView.getSelectionModel().getSelectedIndex();
-//        nameOfTask = event.getNewValue();
-//        tasks.add(new Task(nameOfTask, tasks.get(itemIndex).getDueDate()));
-//        tasks.add(new Task(" ", " "));
-//        listView.getItems().remove(itemIndex);
-//        System.out.println(nameOfTask);
-
-//        refreshList(event);
 
     }
 
@@ -245,29 +207,12 @@ public class Controller implements Initializable {
         taskNameLabelField.setText(tasks.get(itemIndex).getName());
         dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
 
-//        if (tasks.size() > 0) {
-//            int itemIndex = listView.getSelectionModel().getSelectedIndex();
-//            nameOfTaskLabel.setText(tasks.get(itemIndex).getName());
-//            dueDateLabel.setText(tasks.get(itemIndex).getDueDate());
-//        }
-//        else {
-//            viewTaskContextMenu.setDisable(true);
-//            viewTaskMenuBar.setDisable(true);
-//        }
     }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         viewTaskButton.setVisible(false);
-//        listView.setEditable(true);
-//        listView.setCellFactory(TextFieldListCell.forListView());
-
         noTasks();
-
-//        listView.getItems().addAll("Iron Man", "Spider-Man", "Captain America", "Thor");
-//        listView.getItems().addAll(String.valueOf(tasks));
-//        listView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
         taskNameLabelField.setText("Right-click a task to view");
         dueDateLabelField.setText("Right-click a task to view");
 

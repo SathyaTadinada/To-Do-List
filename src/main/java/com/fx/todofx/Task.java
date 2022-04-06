@@ -34,39 +34,10 @@ public class Task {
     }
 
     /**
-     * Sets the name of the task.
-     * @param name Name of the task.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
      * Gets the due date of the task.
      * @return Due date of the task.
      */
     public String getDueDate() {
         return dueDate;
-    }
-
-    /**
-     * Sets the due date of the task.
-     * @param dueDate Due date of the task.
-     */
-    public void setDueDate(String dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    /**
-     * Overridden toString method, displays name of task and its due date.
-     * @return Name of task and due date.
-     */
-    public String toString() {
-        return name;
-    }
-
-    public int hashCode() {
-        dueDate = dueDate.replaceAll("-", "");
-        return Integer.parseInt(dueDate);
     }
 }
