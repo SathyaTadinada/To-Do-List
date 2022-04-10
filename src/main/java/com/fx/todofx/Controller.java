@@ -103,15 +103,15 @@ public class Controller implements Initializable {
 
     @FXML
     public void deleteTasks(ActionEvent event) {
-
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
-        tasks.remove(itemIndex);
-        taskNames.clear();
-        for (Task task : tasks) {
-            taskNames.add(task.getName());
+        if (itemIndex >= 0) {
+            tasks.remove(itemIndex);
+            taskNames.clear();
+            for (Task task : tasks) {
+                taskNames.add(task.getName());
+            }
+            refreshList(event);
         }
-        refreshList(event);
-
     }
 
     @FXML
@@ -119,36 +119,39 @@ public class Controller implements Initializable {
         if (event.getButton().equals(MouseButton.PRIMARY)) {
             if (event.getClickCount() == 2) {
                 int itemIndex = listView.getSelectionModel().getSelectedIndex();
-                taskNameLabel.setText("Task Name:");
-                dueDateLabel.setText("Due Date:");
-                taskNameLabelField.setText(tasks.get(itemIndex).getName());
-                dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
-                bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
-                viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
+                if (itemIndex >= 0) {
+                    taskNameLabel.setText("Task Name:");
+                    dueDateLabel.setText("Due Date:");
+                    taskNameLabelField.setText(tasks.get(itemIndex).getName());
+                    dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
+                    bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
+                    viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
 
-                viewTaskButton.setVisible(true);
-                noSelectedTaskLabel.setVisible(false);
+                    viewTaskButton.setVisible(true);
+                    noSelectedTaskLabel.setVisible(false);
+                }
             }
         }
     }
 
     @FXML
     public void editTask(ActionEvent event) {
-        createTask.setText("Edit Task");
-        bottomAnchorPane.setStyle("-fx-background-color: " + "#bdb7f1");
-        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
-
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
-        String nameOfTask = tasks.get(itemIndex).getName();
-        String dueDate = tasks.get(itemIndex).getDueDate();
+        if (itemIndex >= 0) {
+            createTask.setText("Edit Task");
+            bottomAnchorPane.setStyle("-fx-background-color: " + "#bdb7f1");
+            viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
 
-        taskName.setText(nameOfTask);
-        datePicker.setValue(LocalDate.parse(dueDate));
+            String nameOfTask = tasks.get(itemIndex).getName();
+            String dueDate = tasks.get(itemIndex).getDueDate();
 
-        tasks.remove(itemIndex);
-        taskNames.remove(itemIndex);
-        listView.getItems().remove(itemIndex);
+            taskName.setText(nameOfTask);
+            datePicker.setValue(LocalDate.parse(dueDate));
 
+            tasks.remove(itemIndex);
+            taskNames.remove(itemIndex);
+            listView.getItems().remove(itemIndex);
+        }
     }
 
     @FXML
@@ -189,16 +192,18 @@ public class Controller implements Initializable {
 
     @FXML
     public void viewTask(ActionEvent event) {
-        taskNameLabel.setText("Task Name:");
-        dueDateLabel.setText("Due Date:");
-        noSelectedTaskLabel.setVisible(false);
-        viewTaskButton.setVisible(true);
-        bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
-        viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
-
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
-        taskNameLabelField.setText(tasks.get(itemIndex).getName());
-        dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
+        if (itemIndex >= 0) {
+            taskNameLabel.setText("Task Name:");
+            dueDateLabel.setText("Due Date:");
+            noSelectedTaskLabel.setVisible(false);
+            viewTaskButton.setVisible(true);
+            bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
+            viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
+
+            taskNameLabelField.setText(tasks.get(itemIndex).getName());
+            dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
+        }
     }
 
     @Override

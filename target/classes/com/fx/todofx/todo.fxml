@@ -15,89 +15,137 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fx.todofx.Controller">
+<!-- The main anchor pane of the scene, which controls the size of the application window -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.fx.todofx.Controller">
     <children>
-        <SplitPane dividerPositions="0.97" layoutX="153.0" layoutY="25.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="315.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <!-- This split pane separates the list of tasks on the top from the Add Task and View Task sections -->
+        <SplitPane dividerPositions="0.97" layoutX="153.0" layoutY="25.0" orientation="VERTICAL" prefHeight="400.0"
+                   prefWidth="315.0"
+                   AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                   AnchorPane.topAnchor="0.0">
             <items>
+                <!-- This anchor pane contains the ListView to view the Array List of tasks -->
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <ListView fx:id="listView" layoutX="56.0" layoutY="-8.0" minHeight="300.0" onMouseClicked="#doubleClickViewTask" prefHeight="184.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
+                        <ListView fx:id="listView" layoutX="56.0" layoutY="-8.0" minHeight="300.0"
+                                  onMouseClicked="#doubleClickViewTask" prefHeight="184.0" prefWidth="598.0"
+                                  AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+                                  AnchorPane.topAnchor="25.0">
                             <contextMenu>
                                 <ContextMenu>
                                     <items>
-                                        <MenuItem fx:id="viewTaskContextMenu" mnemonicParsing="false" onAction="#viewTask" text="View Task" />
-                                        <MenuItem fx:id="editTaskContextMenu" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
-                                        <MenuItem fx:id="deleteContextMenu" mnemonicParsing="false" onAction="#deleteTasks" text="Delete" />
+                                        <MenuItem fx:id="viewTaskContextMenu" mnemonicParsing="false"
+                                                  onAction="#viewTask" text="View Task"/>
+                                        <MenuItem fx:id="editTaskContextMenu" mnemonicParsing="false"
+                                                  onAction="#editTask" text="Edit Task"/>
+                                        <MenuItem fx:id="deleteContextMenu" mnemonicParsing="false"
+                                                  onAction="#deleteTasks" text="Delete"/>
                                     </items>
                                 </ContextMenu>
                             </contextMenu>
                         </ListView>
                     </children>
                 </AnchorPane>
-                <AnchorPane fx:id="bottomAnchorPane" minHeight="165.0" minWidth="0.0" prefHeight="196.0" prefWidth="390.0" style="-fx-background-color: #9fbded;">
+                <!-- This anchor pane has the elements for the Add Task and View Task sections -->
+                <AnchorPane fx:id="bottomAnchorPane" minHeight="165.0" minWidth="0.0" prefHeight="196.0"
+                            prefWidth="390.0"
+                            style="-fx-background-color: #9fbded;">
                     <children>
-                        <Label fx:id="createTask" layoutX="22.0" layoutY="14.0" text="Create a Task" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                        <Label fx:id="createTask" layoutX="22.0" layoutY="14.0" text="Create a Task"
+                               AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                             <font>
-                                <Font name="Segoe UI" size="24.0" />
+                                <Font name="Segoe UI" size="24.0"/>
                             </font>
                         </Label>
-                        <TextField fx:id="taskName" layoutX="94.0" layoutY="59.0" prefHeight="25.0" prefWidth="174.0" promptText="e.g. Do homework" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="59.0" />
-                        <Button layoutX="119.0" layoutY="157.0" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: #e67067;" text="Add Task" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="119.0" />
-                        <DatePicker fx:id="datePicker" layoutX="94.0" layoutY="92.0" promptText="e.g. 1/1/2001" AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="92.0" />
-                        <Label layoutX="17.0" layoutY="63.0" text="Task Name:" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="63.0" />
-                        <Label layoutX="25.0" layoutY="96.0" text="Due Date: " AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
-                        <AnchorPane fx:id="viewTaskAnchorPane" layoutX="300.0" prefHeight="196.0" prefWidth="300.0" style="-fx-background-color: #88cf9b;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TextField fx:id="taskName" layoutX="94.0" layoutY="59.0" prefHeight="25.0" prefWidth="174.0"
+                                   promptText="e.g. Do homework" AnchorPane.leftAnchor="94.0"
+                                   AnchorPane.topAnchor="59.0"/>
+                        <Button layoutX="119.0" layoutY="157.0" mnemonicParsing="false" onAction="#addTask"
+                                style="-fx-background-color: #e67067;" text="Add Task" textFill="WHITE"
+                                AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="119.0"/>
+                        <DatePicker fx:id="datePicker" layoutX="94.0" layoutY="92.0" promptText="e.g. 1/1/2001"
+                                    AnchorPane.leftAnchor="94.0" AnchorPane.topAnchor="92.0"/>
+                        <Label layoutX="17.0" layoutY="63.0" text="Task Name:" AnchorPane.leftAnchor="17.0"
+                               AnchorPane.topAnchor="63.0"/>
+                        <Label layoutX="25.0" layoutY="96.0" text="Due Date: " AnchorPane.leftAnchor="25.0"
+                               AnchorPane.topAnchor="96.0"/>
+                        <AnchorPane fx:id="viewTaskAnchorPane" layoutX="300.0" prefHeight="196.0" prefWidth="300.0"
+                                    style="-fx-background-color: #88cf9b;" AnchorPane.bottomAnchor="0.0"
+                                    AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <Separator layoutX="-3.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                <Label fx:id="viewTask" layoutX="6.0" layoutY="14.0" text="View Task" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                <Separator layoutX="-3.0" layoutY="-2.0" orientation="VERTICAL" prefHeight="200.0"
+                                           AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                           AnchorPane.topAnchor="0.0"/>
+                                <Label fx:id="viewTask" layoutX="6.0" layoutY="14.0" text="View Task"
+                                       AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
                                     <font>
-                                        <Font name="Segoe UI" size="24.0" />
+                                        <Font name="Segoe UI" size="24.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="taskNameLabel" layoutX="34.0" layoutY="61.0" text="Task Name:" AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="63.0" />
-                                <Label fx:id="dueDateLabel" layoutX="17.0" layoutY="98.0" text="Due Date:" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0" />
-                                <Label fx:id="taskNameLabelField" alignment="CENTER" layoutX="87.0" layoutY="63.0" prefHeight="17.0" prefWidth="201.0" text="taskNameLabel" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="61.0">
+                                <Label fx:id="taskNameLabel" layoutX="34.0" layoutY="61.0" text="Task Name:"
+                                       AnchorPane.leftAnchor="17.0" AnchorPane.topAnchor="63.0"/>
+                                <Label fx:id="dueDateLabel" layoutX="17.0" layoutY="98.0" text="Due Date:"
+                                       AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="96.0"/>
+                                <Label fx:id="taskNameLabelField" alignment="CENTER" layoutX="87.0" layoutY="63.0"
+                                       prefHeight="17.0" prefWidth="201.0" text="taskNameLabel"
+                                       AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0"
+                                       AnchorPane.topAnchor="61.0">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="16.0" />
+                                        <Font name="Segoe UI Bold" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="dueDateLabelField" alignment="CENTER" layoutX="89.0" layoutY="96.0" prefHeight="17.0" prefWidth="201.0" text="dueDateLabel" AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="94.0">
+                                <Label fx:id="dueDateLabelField" alignment="CENTER" layoutX="89.0" layoutY="96.0"
+                                       prefHeight="17.0" prefWidth="201.0" text="dueDateLabel"
+                                       AnchorPane.leftAnchor="89.0" AnchorPane.rightAnchor="10.0"
+                                       AnchorPane.topAnchor="94.0">
                                     <font>
-                                        <Font name="Segoe UI Bold" size="16.0" />
+                                        <Font name="Segoe UI Bold" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Button fx:id="viewTaskButton" layoutX="124.0" layoutY="157.0" mnemonicParsing="false" onAction="#refreshList" style="-fx-background-color: #e67067;" text="Done" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="124.0" AnchorPane.rightAnchor="124.0" />
-                        <Label fx:id="noSelectedTaskLabel" alignment="CENTER" layoutX="9.0" layoutY="69.0" prefHeight="17.0" prefWidth="283.0" text="noSelectedTaskLabel" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="69.0">
-                           <font>
-                              <Font name="Segoe UI Black Italic" size="18.0" />
-                           </font>
-                        </Label>
+                                <Button fx:id="viewTaskButton" layoutX="124.0" layoutY="157.0" mnemonicParsing="false"
+                                        onAction="#refreshList" style="-fx-background-color: #e67067;" text="Done"
+                                        textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="124.0"
+                                        AnchorPane.rightAnchor="124.0"/>
+                                <Label fx:id="noSelectedTaskLabel" alignment="CENTER" layoutX="9.0" layoutY="69.0"
+                                       prefHeight="17.0" prefWidth="283.0" text="noSelectedTaskLabel"
+                                       AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="8.0"
+                                       AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="69.0">
+                                    <font>
+                                        <Font name="Segoe UI Black Italic" size="18.0"/>
+                                    </font>
+                                </Label>
                             </children>
                         </AnchorPane>
                     </children>
                 </AnchorPane>
             </items>
         </SplitPane>
+        <!-- This menu bar stretches across the top of the application and has all the controls in menu items -->
         <MenuBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#refreshList" text="Home" />
-                        <MenuItem fx:id="clearMenuBar" mnemonicParsing="false" onAction="#clear" text="Clear" />
-                        <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#refreshList" text="Home"/>
+                        <MenuItem fx:id="clearMenuBar" mnemonicParsing="false" onAction="#clear" text="Clear"/>
+                        <MenuItem mnemonicParsing="false" onAction="#close" text="Close"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit">
                     <items>
-                        <MenuItem fx:id="viewTaskMenuBar" mnemonicParsing="false" onAction="#viewTask" text="View Task" />
-                        <MenuItem fx:id="editTaskMenuBar" mnemonicParsing="false" onAction="#editTask" text="Edit Task" />
-                        <SeparatorMenuItem mnemonicParsing="false" />
-                        <MenuItem fx:id="deleteMenuBar" mnemonicParsing="false" onAction="#deleteTasks" text="Delete" />
+                        <MenuItem fx:id="viewTaskMenuBar" mnemonicParsing="false" onAction="#viewTask"
+                                  text="View Task"/>
+                        <MenuItem fx:id="editTaskMenuBar" mnemonicParsing="false" onAction="#editTask"
+                                  text="Edit Task"/>
+                        <SeparatorMenuItem mnemonicParsing="false"/>
+                        <MenuItem fx:id="deleteMenuBar" mnemonicParsing="false" onAction="#deleteTasks" text="Delete"/>
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#about" text="About"/>
                     </items>
                 </Menu>
             </menus>
