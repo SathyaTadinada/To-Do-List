@@ -8,79 +8,61 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
 public class Controller implements Initializable {
 
+    // all the frontend elements that will be used
+
     private List<String> taskNames = new ArrayList<>();
     private List<Task> tasks = new ArrayList<>();
 
     @FXML
     private AnchorPane bottomAnchorPane;
-
     @FXML
     private AnchorPane viewTaskAnchorPane;
-
     @FXML
     private Button viewTaskButton;
-
     @FXML
     private DatePicker datePicker;
-
     @FXML
     private Label createTask;
-
     @FXML
     private Label viewTask;
-
     @FXML
     private Label taskNameLabelField;
-
     @FXML
     private Label taskNameLabel;
-
     @FXML
     private Label dueDateLabelField;
-
     @FXML
     private Label dueDateLabel;
-
     @FXML
     private Label noSelectedTaskLabel;
-
+    @FXML
+    private ListView<String> listView;
+    @FXML
+    private MenuItem viewTaskContextMenu;
+    @FXML
+    private MenuItem viewTaskMenuBar;
+    @FXML
+    private MenuItem deleteContextMenu;
+    @FXML
+    private MenuItem deleteMenuBar;
+    @FXML
+    private MenuItem clearMenuBar;
+    @FXML
+    private MenuItem editTaskContextMenu;
+    @FXML
+    private MenuItem editTaskMenuBar;
     @FXML
     private TextField taskName;
 
     @FXML
-    private ListView<String> listView;
-
-    @FXML
-    private MenuItem viewTaskContextMenu;
-
-    @FXML
-    private MenuItem viewTaskMenuBar;
-
-    @FXML
-    private MenuItem deleteContextMenu;
-
-    @FXML
-    private MenuItem deleteMenuBar;
-
-    @FXML
-    private MenuItem clearMenuBar;
-
-    @FXML
-    private MenuItem editTaskMenuBar;
-
-    @FXML
-    private MenuItem editTaskContextMenu;
-
-
-    @FXML
-    void about(ActionEvent event) {
-
+    public void about(ActionEvent event) {
         viewTaskButton.setVisible(true);
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5cbf3");
 
@@ -92,20 +74,15 @@ public class Controller implements Initializable {
         dueDateLabelField.setText("");
 
         noSelectedTaskLabel.setVisible(false);
-
     }
 
     @FXML
-    void addTask(ActionEvent event) {
-//        System.out.println(taskName.getText());
-//        System.out.println(datePicker.getValue());
-
+    public void addTask(ActionEvent event) {
         // verifies that both the task name text field and the date picker are not empty before adding the task
         if ((taskName.getText() != null && !taskName.getText().isBlank()) && datePicker.getValue() != null) {
             tasks.add(new Task(taskName.getText(), String.valueOf(datePicker.getValue())));
             taskNames.add(taskName.getText());
         }
-
         taskName.clear();
         datePicker.setValue(null);
 
@@ -120,12 +97,12 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void close(ActionEvent event) {
+    public void close(ActionEvent event) {
         Platform.exit();
     }
 
     @FXML
-    void deleteTasks(ActionEvent event) {
+    public void deleteTasks(ActionEvent event) {
 
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         tasks.remove(itemIndex);
@@ -138,9 +115,9 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void doubleClickViewTask(MouseEvent event) {
-        if (event.getButton().equals(MouseButton.PRIMARY)){
-            if (event.getClickCount() == 2){
+    public void doubleClickViewTask(MouseEvent event) {
+        if (event.getButton().equals(MouseButton.PRIMARY)) {
+            if (event.getClickCount() == 2) {
                 int itemIndex = listView.getSelectionModel().getSelectedIndex();
                 taskNameLabel.setText("Task Name:");
                 dueDateLabel.setText("Due Date:");
@@ -156,7 +133,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void editTask(ActionEvent event) {
+    public void editTask(ActionEvent event) {
         createTask.setText("Edit Task");
         bottomAnchorPane.setStyle("-fx-background-color: " + "#bdb7f1");
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
@@ -175,19 +152,12 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    void refreshList(ActionEvent event) {
+    public void refreshList(ActionEvent event) {
         listView.getSelectionModel().clearSelection();
         bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#88cf9b");
         createTask.setText("Create a Task");
         viewTask.setText("View Task");
-
-//        taskNameLabel.setText("Task Name:");
-//        dueDateLabel.setText("Due Date:");
-//        taskNameLabelField.setText("Right-click a task to view");
-//        dueDateLabelField.setText("Right-click a task to view");
-
-
         viewTaskButton.setVisible(false);
 
         listView.getItems().clear();
@@ -215,23 +185,20 @@ public class Controller implements Initializable {
             noSelectedTaskLabel.setVisible(true);
             noSelectedTaskLabel.setText("Right-click a task to view it.");
         }
-
     }
 
     @FXML
-    void viewTask(ActionEvent event) {
+    public void viewTask(ActionEvent event) {
         taskNameLabel.setText("Task Name:");
         dueDateLabel.setText("Due Date:");
         noSelectedTaskLabel.setVisible(false);
         viewTaskButton.setVisible(true);
-
-        bottomAnchorPane.setStyle("-fx-background-color: #" + "9fbded");
+        bottomAnchorPane.setStyle("-fx-background-color: " + "#9fbded");
         viewTaskAnchorPane.setStyle("-fx-background-color: " + "#f5e5a1");
+
         int itemIndex = listView.getSelectionModel().getSelectedIndex();
         taskNameLabelField.setText(tasks.get(itemIndex).getName());
         dueDateLabelField.setText(tasks.get(itemIndex).getDueDate());
-
-
     }
 
     @Override
@@ -270,3 +237,69 @@ public class Controller implements Initializable {
         noSelectedTaskLabel.setText("Create a task to view it here.");
     }
 }
+
+/*
+// all of the frontend elements that will be used
+    private List<String> taskNames = new ArrayList<>();
+    private List<Task> tasks = new ArrayList<>();
+
+    @FXML
+    private AnchorPane bottomAnchorPane;
+
+    @FXML
+    private AnchorPane viewTaskAnchorPane;
+
+    @FXML
+    private Button viewTaskButton;
+
+    @FXML
+    private DatePicker datePicker;
+
+    @FXML
+    private Label createTask;
+
+    @FXML
+    private Label viewTask;
+
+    @FXML
+    private Label taskNameLabelField;
+
+    @FXML
+    private Label taskNameLabel;
+
+    @FXML
+    private Label dueDateLabelField;
+
+    @FXML
+    private Label dueDateLabel;
+
+    @FXML
+    private Label noSelectedTaskLabel;
+
+    @FXML
+    private ListView<String> listView;
+
+    @FXML
+    private MenuItem viewTaskContextMenu;
+
+    @FXML
+    private MenuItem viewTaskMenuBar;
+
+    @FXML
+    private MenuItem deleteContextMenu;
+
+    @FXML
+    private MenuItem deleteMenuBar;
+
+    @FXML
+    private MenuItem clearMenuBar;
+
+    @FXML
+    private MenuItem editTaskContextMenu;
+
+    @FXML
+    private MenuItem editTaskMenuBar;
+
+    @FXML
+    private TextField taskName;
+ */

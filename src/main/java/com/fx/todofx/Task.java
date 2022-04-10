@@ -18,14 +18,6 @@ public class Task {
     }
 
     /**
-     * Default constructor.
-     */
-    public Task() {
-        this.name = "Untitled task";
-        this.dueDate = "2022-03-20";
-    }
-
-    /**
      * Gets the name of the task.
      * @return Name of the task.
      */
